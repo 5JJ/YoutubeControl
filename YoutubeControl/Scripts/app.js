@@ -43,8 +43,28 @@
 
 
                 ajaxHelper(videoUri, 'POST', data).done(function () {
-                    loadVideos();
+                    alert(data.vId);
+                    // loadVideos();
+                    //$("#videos").append("<li class=\"video\" id='video' name=" + val.vId + ">" +
+                    //    "<div style='float:left;width:800px' name='t'>" +
+                    //        "<div style='float:left;' name='t'><img src=" + val.vthumb + " height='94' width='168'></div>" +
+                    //        "<div style='float:left;'><p>" + val.vTitle + "</p>" +
+                    //            "재생횟수 : <p id='vNum'>" + val.vNum + "</p>" +
+                    //            "<input type='button' class='numButton' value='+'/>" +
+                    //            "<input type='button' class='numButton' value='-'/>" +
+                    //            "<input type='button' class='delButton' value='Del' name='" + val.Id + "'/>" +
+                    //            "<input type='button' class='playButton' value='Play'" +
+                    //            "<meta property=\"og:url\" content=" + val.vLink +
+                    //            "><meta name='index' content=" + vTotal +
+                    //            "><meta property=\"vNum\" content=" + val.vNum +
+                    //            "><meta content=" + val.vId + ">" +
+                    //        "</div></div></li>");
+                    //playVideoListIds.push(val.vId);
+                    //videoNums.push(val.vNum);
+                    //videoIndexes.push(vTotal);
+                    //vTotal++;
                 });
+                //$.getJSON(videoUrl + )
                 
             }
         }
