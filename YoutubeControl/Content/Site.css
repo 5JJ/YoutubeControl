@@ -1,0 +1,37 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+#wrapper{
+    overflow:hidden;
+}
+#listBox{
+    border:1px solid #0094ff;
+    float:left;
+    width:500px;
+}
+#lists{
+    border:1px solid #b200ff;
+    float:left;
+    width:400px;
+}
+
+
+.box-selecting {background :#FECA40;}
+.box-selected {background: #F39814; color:white;}
+.box-clicked {color:black;}
+.box{
+    border:1px solid red;
+}
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}

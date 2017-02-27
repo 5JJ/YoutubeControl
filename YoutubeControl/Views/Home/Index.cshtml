@@ -1,0 +1,32 @@
+﻿@section scripts {
+    @Scripts.Render("~/bundles/app")
+}
+<h2 id="Mtitle"> HI</h2>
+<div id="vPlay">
+    @*<iframe id="vPlay" width="854" height="480" frameborder="0" allowfullscreen></iframe>*@
+    
+</div>
+<div class="form-group" data-bind="with: newListBox">
+    <label for="CreateListBox">Name :</label>
+    <input type="text" id="CreateListBox" />
+    <input type="button" value="Add" onclick="inputListBox();" />
+</div>
+<div>
+    <label for="youtubeURL">URL :</label>
+    <input type="text" id="youtubeURL" />
+    <input type="button" value="INPUT" onclick="addVideo();" />
+</div>
+<div class="panel-heading">
+    <h2 class="panel-title">Lists</h2>
+</div>
+<div class="panel-body">
+    <ul class="list-unstyled" id = "listBox">   
+    </ul>
+</div>
+<div class="panel-heading">
+    <h2 class="panel-title">Videos</h2>
+</div>
+<div class="panel-body">
+    <ul class="list-unstyled" id="videos">
+    </ul>
+</div>

@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ListsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--생성 중 오류 발생:
+경고 6002: 테이블/뷰 'C:\USERS\JH\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\YOUTUBECONTROL\YOUTUBECONTROL\APP_DATA\LISTS.MDF.dbo.Table'에 기본 키가 정의되지 않았습니다. 키가 유추되었고 읽기 전용 테이블/뷰로 정의되었습니다.-->
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="listBoxName" Type="nvarchar" MaxLength="50" />
+          <Property Name="vLink" Type="varchar(max)" />
+          <Property Name="vthumb" Type="varchar(max)" />
+          <Property Name="vTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="vNum" Type="int" />
+          <Property Name="listsNum" Type="int" />
+        </EntityType>
+        <EntityContainer Name="ListsModelStoreContainer">
+          <EntitySet Name="Table" EntityType="Self.Table" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Table].[Id] AS [Id], 
+    [Table].[listBoxName] AS [listBoxName], 
+    [Table].[vLink] AS [vLink], 
+    [Table].[vthumb] AS [vthumb], 
+    [Table].[vTitle] AS [vTitle], 
+    [Table].[vNum] AS [vNum], 
+    [Table].[listsNum] AS [listsNum]
+    FROM [dbo].[Table] AS [Table]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ListsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="listBoxName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="vLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="vthumb" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="vTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="vNum" Type="Int32" />
+          <Property Name="listsNum" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="ListsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tables" EntityType="Self.Table" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ListsModelStoreContainer" CdmEntityContainer="ListsEntities">
+          <EntitySetMapping Name="Tables">
+            <EntityTypeMapping TypeName="ListsModel.Table">
+              <MappingFragment StoreEntitySet="Table">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="listBoxName" ColumnName="listBoxName" />
+                <ScalarProperty Name="vLink" ColumnName="vLink" />
+                <ScalarProperty Name="vthumb" ColumnName="vthumb" />
+                <ScalarProperty Name="vTitle" ColumnName="vTitle" />
+                <ScalarProperty Name="vNum" ColumnName="vNum" />
+                <ScalarProperty Name="listsNum" ColumnName="listsNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="없음" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

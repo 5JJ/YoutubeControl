@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ListsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--생성 중 오류 발생:
+경고 6002: 테이블/뷰 'C:\USERS\JH\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\YOUTUBECONTROL\YOUTUBECONTROL\APP_DATA\LISTS.MDF.dbo.Table'에 기본 키가 정의되지 않았습니다. 키가 유추되었고 읽기 전용 테이블/뷰로 정의되었습니다.-->
+  <EntityType Name="Table">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="listBoxName" Type="nvarchar" MaxLength="50" />
+    <Property Name="vLink" Type="varchar(max)" />
+    <Property Name="vthumb" Type="varchar(max)" />
+    <Property Name="vTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="vNum" Type="int" />
+    <Property Name="listsNum" Type="int" />
+  </EntityType>
+  <EntityContainer Name="ListsModelStoreContainer">
+    <EntitySet Name="Table" EntityType="Self.Table" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Table].[Id] AS [Id], 
+    [Table].[listBoxName] AS [listBoxName], 
+    [Table].[vLink] AS [vLink], 
+    [Table].[vthumb] AS [vthumb], 
+    [Table].[vTitle] AS [vTitle], 
+    [Table].[vNum] AS [vNum], 
+    [Table].[listsNum] AS [listsNum]
+    FROM [dbo].[Table] AS [Table]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

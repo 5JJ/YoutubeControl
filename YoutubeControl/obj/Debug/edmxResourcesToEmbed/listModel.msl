@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ListsModelStoreContainer" CdmEntityContainer="ListsEntities">
+    <EntitySetMapping Name="Tables">
+      <EntityTypeMapping TypeName="ListsModel.Table">
+        <MappingFragment StoreEntitySet="Table">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="listBoxName" ColumnName="listBoxName" />
+          <ScalarProperty Name="vLink" ColumnName="vLink" />
+          <ScalarProperty Name="vthumb" ColumnName="vthumb" />
+          <ScalarProperty Name="vTitle" ColumnName="vTitle" />
+          <ScalarProperty Name="vNum" ColumnName="vNum" />
+          <ScalarProperty Name="listsNum" ColumnName="listsNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
