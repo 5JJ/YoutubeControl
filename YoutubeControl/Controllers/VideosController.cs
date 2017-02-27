@@ -26,30 +26,34 @@ namespace YoutubeControl.Controllers
         }
 
         // GET: api/Videos/5
-        [ResponseType(typeof(Video))]
-        public async Task<IHttpActionResult> GetVideo(int id)
-        {
-            Video v = await db.Videos.FindAsync(id);
-            var videos = from b in db.Videos
-                         where (b.ListBoxId == id)
-                         select new VideoDTO()
-                         {
-                             Id = b.Id,
-                             vTitle = b.vTitle,
-                             vthumb = b.vThumb,
-                             vLink = b.vLink,
-                             vNum = b.vNum,
-                             listNum = b.listNum,
-                             listid = b.ListBoxId,
-                             vId = b.vId
-                         };
-            if (videos == null)
-            {
-                return NotFound();
-            }
+        //[ResponseType(typeof(Video))]
+        //public async Task<IHttpActionResult> GetVideo(int id)
+        //{
+        //    Video v = parsingURL(video.uri);
+        //    v.ListBoxId = 0;
 
-            return Ok(videos);
-        }
+        //    db.Videos.Add(v);
+        //    await db.SaveChangesAsync();
+
+        //   // Video v = await db.Videos.FindAsync(id);
+        //    var videos = new VideoDTO()
+        //                 {
+        //                     Id = v.Id,
+        //                     vTitle = v.vTitle,
+        //                     vthumb = v.vThumb,
+        //                     vLink = v.vLink,
+        //                     vNum = v.vNum,
+        //                     listNum = v.listNum,
+        //                     listid = v.ListBoxId,
+        //                     vId = v.vId
+        //                 };
+        //    if (videos == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return Ok(videos);
+        //}
 
         // PUT: api/Videos/5
         [ResponseType(typeof(void))]
@@ -87,7 +91,7 @@ namespace YoutubeControl.Controllers
         }
 
         // POST: api/Videos
-        [ResponseType(typeof(Video))]
+        //[ResponseType(typeof(Video))]
         public async Task<IHttpActionResult> PostVideo(videoUri video)
         {
             if (!ModelState.IsValid)
