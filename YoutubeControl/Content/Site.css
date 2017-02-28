@@ -11,23 +11,20 @@
 #wrapper{
     overflow:hidden;
 }
-#listBox{
-    border:1px solid #0094ff;
-    float:left;
-    width:500px;
-}
 #lists{
     border:1px solid #b200ff;
     float:left;
     width:400px;
 }
 
-
 .box-selecting {background :#FECA40;}
 .box-selected {background: #F39814; color:white;}
 .box-clicked {color:black;}
 .box{
-    border:1px solid red;
+    border: solid 1px black;
+    width: 200px;
+    text-align:center;
+    margin-bottom:1px;
 }
 /* Set width on the form input elements since they're 100% wide by default */
 input,

@@ -1,11 +1,12 @@
 ﻿@section scripts {
     @Scripts.Render("~/bundles/app")
 }
-<h2 id="Mtitle"> HI</h2>
+@Styles.Render("~/Content/Site.css")
+<style>
+</style>
 <div id="vPlay">
-    @*<iframe id="vPlay" width="854" height="480" frameborder="0" allowfullscreen></iframe>*@
-    
 </div>
+<h2>Video</h2>
 <div class="form-group" data-bind="with: newListBox">
     <label for="CreateListBox">Name :</label>
     <input type="text" id="CreateListBox" />

@@ -78,7 +78,11 @@
     function inputListBox() {
         var name = $("#CreateListBox").val();
         //need to check the duplicate
-        $("#listBox").append("<li><div class=\"box\" name=\"" + name + "\">" + name + "</div></li>");
+        ajaxHelper(listsUri, 'POST', name).done(function (val) {
+            $("#listBox").append("<li><div class=\"box\" name=\"" + val.Id + "\">" + val.Name + "</div></li>");
+
+        });
+
     }
     function getAllLists() {
          $.getJSON(listsUri, function (data) {
@@ -258,10 +262,10 @@
         }
     }
     $(document).delegate('div.box', 'mouseenter', function () {
-        $(this).addClass("list_selecting");
+        $(this).addClass("box_selecting");
     });
     $(document).delegate('div.box', 'mouseout', function () {
-        $(this).removeClass("list_selecting");
+        $(this).removeClass("box_selecting");
     });
     $(document).delegate('li.video', 'click', function () {
     });
