@@ -2,7 +2,13 @@
     padding-top: 50px;
     padding-bottom: 20px;
 }
-
+p{
+    width:320px;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    word-wrap:normal;
+    overflow:hidden;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -16,7 +22,21 @@
     float:left;
     width:400px;
 }
-
+.div-layout{
+    width:500px;
+    border: solid 1px black;
+    margin-bottom:1px;
+    float:left;
+}
+.div-info{
+    float:left;
+    padding-left: 5px;
+    width:320px;
+}
+.list{
+  width:400px;
+  background-color: #EAEAEA;
+}
 .box-selecting {background :#FECA40;}
 .box-selected {background: #F39814; color:white;}
 .box-clicked {color:black;}

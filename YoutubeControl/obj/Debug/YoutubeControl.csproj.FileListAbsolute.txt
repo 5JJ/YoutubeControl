@@ -127,3 +127,4 @@ C:\Users\JH\Documents\Visual Studio 2015\Projects\YoutubeControl\YoutubeControl\
 C:\Users\JH\Documents\Visual Studio 2015\Projects\YoutubeControl\YoutubeControl\bin\roslyn\vbc.exe.config
 C:\Users\JH\Documents\Visual Studio 2015\Projects\YoutubeControl\YoutubeControl\bin\roslyn\vbc.rsp
 C:\Users\JH\Documents\Visual Studio 2015\Projects\YoutubeControl\YoutubeControl\obj\Debug\YoutubeControl.Migrations.DbMigrationsConfigurationAutomaticMigrationsEnabledtrue.resources
+C:\Users\JH\Documents\Visual Studio 2015\Projects\YoutubeControl\YoutubeControl\obj\Debug\YoutubeControl.csprojResolveAssemblyReference.cache

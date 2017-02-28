@@ -88,7 +88,7 @@ namespace YoutubeControl.Controllers
 
         // POST: api/ListBoxes
         [ResponseType(typeof(ListBox))]
-        public async Task<IHttpActionResult> PostListBox(string listname)
+        public async Task<IHttpActionResult> PostListBox(ListBox name)
         {
             if (!ModelState.IsValid)
             {
@@ -96,7 +96,7 @@ namespace YoutubeControl.Controllers
             }
 
             ListBox listBox = new ListBox();
-            listBox.Name = listname;
+            listBox.Name = name.Name; 
 
             db.ListBoxes.Add(listBox);
             await db.SaveChangesAsync();

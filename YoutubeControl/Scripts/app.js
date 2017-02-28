@@ -1,4 +1,4 @@
-﻿    var self = this;
+﻿var self = this;
     var listcheck = null; //list id
 
     var listsUri = '/api/lists/';
@@ -46,10 +46,10 @@
                     var lastvId = $('#videos').children().last().attr('name');
                     
                     $("#videos").append("<li class=\"video\" id='video' name=" + val.vId + ">" +
-                        "<div style='float:left;width:800px' name='t'>" +
+                        "<div  class='div-layout' width:800px' name='t'>" +
                             "<div style='float:left;' name='t'><img src=" + val.vthumb + " height='94' width='168'></div>" +
                             "<div style='float:left;'><p>" + val.vTitle + "</p>" +
-                                "재생횟수 : <p id='vNum'>" + val.vNum + "</p>" +
+                                "<p id='vNum'> 재생횟수 : " + val.vNum + "</p>" +
                                 "<input type='button' class='numButton' value='+'/>" +
                                 "<input type='button' class='numButton' value='-'/>" +
                                 "<input type='button' class='delButton' value='Del' name='" + val.Id + "'/>" +
@@ -78,11 +78,18 @@
     function inputListBox() {
         var name = $("#CreateListBox").val();
         //need to check the duplicate
-        ajaxHelper(listsUri, 'POST', name).done(function (val) {
-            $("#listBox").append("<li><div class=\"box\" name=\"" + val.Id + "\">" + val.Name + "</div></li>");
+        name.Trim();
 
-        });
+        if (name.length > 0) {
+            var data = {
+                Name: name
+            };
+            ajaxHelper(listsUri, 'POST', data).done(function (val) {
+                $("#listBox").append("<li><div class=\"box\" name=\"" + val.Id + "\">" + val.Name + "</div></li>");
 
+            });
+
+        } 
     }
     function getAllLists() {
          $.getJSON(listsUri, function (data) {
@@ -116,10 +123,10 @@
             if (data != null) {
                 $.each(data, function (key, val) {
                     $("#videos").append("<li class=\"video\" id='video' name=" + val.vId + ">" +
-                        "<div style='float:left;width:800px' name='t'>" +
+                        "<div class='div-layout' name='t'>" +
                             "<div style='float:left;' name='t'><img src=" + val.vthumb + " height='94' width='168'></div>" +
-                            "<div style='float:left;'><p>" + val.vTitle + "</p>" +
-                                "재생횟수 : <p id='vNum'>" + val.vNum + "</p>" +
+                            "<div class='div-info'><p>" + val.vTitle + "</p>" +
+                                "<p id='vNum'>재생횟수 : " + val.vNum + "</p>" +
                                 "<input type='button' class='numButton' value='+'/>" +
                                 "<input type='button' class='numButton' value='-'/>" +
                                 "<input type='button' class='delButton' value='Del' name='" + val.Id + "'/>" +
@@ -163,7 +170,7 @@
             if (v_vNum > 0)
                 v_vNum--;
         }
-        v.eq(1).text(v_vNum);
+        v.eq(1).text("재생횟수 : "+v_vNum);
         var Index = jQuery.inArray(v_vId, playVideoListIds);
         videoNums[Index] = v_vNum;
         o_videoNums[v.eq(6).attr("content")] = v_vNum;
@@ -273,4 +280,5 @@
 
         getAllLists();
     });
-   
+
+       

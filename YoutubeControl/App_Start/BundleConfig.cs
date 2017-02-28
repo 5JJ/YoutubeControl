@@ -24,7 +24,6 @@ namespace YoutubeControl
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
             bundles.Add(new StyleBundle("~/bundles/app").Include(
-                     "~/Scripts/knockout-{version}.js",
                      "~/Scripts/app.js"));
             BundleTable.EnableOptimizations = false;
         }
