@@ -38,17 +38,52 @@ p{
   background-color: #EAEAEA;
 }
 .box-selecting {background :#FECA40;}
-.box-selected {background: #F39814; color:white;}
+.box-selected {
+    background: #F39814; 
+    color:white;
+    border: solid 1px black;
+    width: 200px;
+    text-align:center;
+    margin-bottom:1px;
+}
 .box-clicked {color:black;}
+.box:hover{
+    background :#EAEAEA;
+}
 .box{
     border: solid 1px black;
     width: 200px;
     text-align:center;
     margin-bottom:1px;
+    background:white;
+    color:black;
+}
+ul{
+    height:500px;
+    overflow-y:auto;
 }
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
 textarea {
     max-width: 280px;
+}
+.alert {
+    width:900px;
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+}
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.closebtn:hover {
+    color: black;
 }

@@ -5,9 +5,9 @@
 <h2>Video</h2>
 <div id="vPlay">
 </div>
-
-
-
+<div id="alert" class="alert" style="display:none;">
+    <p id="text"> </p>
+</div>
 
 <div style="float:left;margin-right:100px;">
     <div class="panel-heading">
@@ -17,7 +17,7 @@
     <div class="form-group" data-bind="with: newListBox">
         <label for="CreateListBox">Name :</label>
         <input type="text" id="CreateListBox" />
-        <input type="button" value="Add" onclick="inputListBox();" />
+        <input type="button" value="Add" onclick="addListBox();" />
     </div>
     <div>
         <ul class="list-unstyled" id="listBox"></ul>
@@ -33,6 +33,6 @@
         <input type="button" value="INPUT" onclick="addVideo();" />
     </div>
     <div class="panel-body">
-        <ul class="list-unstyled" id="videos"></ul>
+        <ul style="width:520px;"class="list-unstyled" id="videos"></ul>
     </div>
 </div>

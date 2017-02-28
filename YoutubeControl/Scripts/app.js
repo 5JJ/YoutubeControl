@@ -23,18 +23,21 @@
             contentType: 'application/json',
             data: data ? JSON.stringify(data) : null
         }).fail(function (jqXHR, textStatus, errorThrown) {
-            alert(errorThrown);
+            alertMessage(errorThrown);
         });
     }
 
     function addVideo() {
         var regex = "^https://www.youtube.com/watch?v";
         var url = $('#youtubeURL').val();
-        if (url == null) {
-            alert("Input the url");
+        if (url.length <= 0) {
+            alertMessage("Input the YOUTUBE URL.");
         } else {
-            if (listcheck == null) {
-                alert("Select the listBox");
+            if (url.match(regex) == null) {
+                alertMessage("PLEASE CHECK your YOUTUBE URI.");
+            }
+            else if (listcheck == null) {
+                alertMessage("BEFORE INPUT url, PLEASE SELECT the listBox.");
             } else {
                 var vData = {
                     Uri: $('#youtubeURL').val(),
@@ -75,34 +78,39 @@
             }
         }
     }
-    function inputListBox() {
+    function addListBox() {
         var name = $("#CreateListBox").val();
         //need to check the duplicate
-        name.Trim();
-
         if (name.length > 0) {
             var data = {
                 Name: name
             };
             ajaxHelper(listsUri, 'POST', data).done(function (val) {
-                $("#listBox").append("<li><div class=\"box\" name=\"" + val.Id + "\">" + val.Name + "</div></li>");
+                $("#listBox").append("<li><div class=\"box\"id='list_box' name=\"" + val.Id + "\">" + val.Name + "</div></li>");
 
             });
-
-        } 
+        } else {
+            alertMessage("Input the LISTBOX NAME you want.");
+        }
     }
     function getAllLists() {
          $.getJSON(listsUri, function (data) {
              $.each(data, function (key, val) {
-                 $("#listBox").append("<li><div class=\"box\" name=\"" + val.Id + "\">" + val.Name + "</div></li>");
+                 $("#listBox").append("<li><div class=\"box\"id='list_box' name=\"" + val.Id + "\">" + val.Name + "</div></li>");
              });
+
         }).fail(
         function (jqXHR, textStatus, err) {
-            alert(err);
+            alertMessage(err);
         });
     }
 //get videos from a selected list
-    $(document).delegate('div.box', 'click', function () {
+    $(document).delegate('#list_box', 'click', function () {
+        //$('div #list_box').removeClass('box-selected');
+        $('div #list_box').addClass('box');
+        $(this).removeClass('box');
+        $(this).addClass('box-selected');
+
         if (listcheck != $(this).attr("name")) {
             listcheck = $(this).attr("name");
             loadVideos();
@@ -149,11 +157,12 @@
                 var firstScriptTag = document.getElementsByTagName('script')[0];
                 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+               
               //  alert(playVideoListIds);
             } 
         }).fail(
             function (jqXHR, textStatus, err) {
-                alert(err);
+                alertMessage(err);
             });
     }
 //vNum, val.Id, 
@@ -175,11 +184,9 @@
         videoNums[Index] = v_vNum;
         o_videoNums[v.eq(6).attr("content")] = v_vNum;
         playMaxNum = videoNums[playIndex];
-        v.eq(7).attr("content", v_vNum);    
+        v.eq(7).attr("content", v_vNum);
+        
     });
-//is it need to access the database and update it?
-//how about when changing the lists, save all at once?
-//or add the video?
 
     $(document).delegate('.playButton', 'click', function () {
         var v = $(this).parent().children();
@@ -208,25 +215,21 @@
 
 //DELETE
     $(document).delegate('.delButton', 'click', function () {
-        //function delVideo(id) {
         var v = $(this).parent().children();
         var id = $(this).attr('name');
         var index = v.eq(8).attr('content'); //vID
         
         var data;
         ajaxHelper(videoUri + id, 'DELETE', data).done(function () {
-            alert("complete del data");
-            //loadVideos(); // change it just erase the specific list
+            alertMessage("COMPLETE DELETE the selected data");
+
             $("#videos li[name='"+index+"']").remove();
             vTotal--;
 
-            //alert(o_playVideoListIds);
             index = v.eq(8).attr('content');
             var i = jQuery.inArray(index, o_playVideoListIds);
             o_playVideoListIds.splice(i, 1);
             o_videoNums.splice(i, 1);
-
-           // alert(o_playVideoListIds);
 
             i = jQuery.inArray(index, playVideoListIds);
             playVideoListIds.splice(i, 1);
@@ -268,17 +271,19 @@
             }
         }
     }
-    $(document).delegate('div.box', 'mouseenter', function () {
-        $(this).addClass("box_selecting");
-    });
-    $(document).delegate('div.box', 'mouseout', function () {
-        $(this).removeClass("box_selecting");
-    });
-    $(document).delegate('li.video', 'click', function () {
-    });
+    function alertMessage(text) {
+        $('#text').text("Danger!\t" + text);
+        $('#alert').show().delay(2000).fadeOut();
+
+    }
+    function closebtn() {
+        $(this).css('display','none');
+    }
+
     $(document).ready(function(){
 
         getAllLists();
+      
     });
 
        
