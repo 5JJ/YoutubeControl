@@ -16,11 +16,11 @@
         <button id="DelList">-</button>
     </div>
     <div class="InfoLayout">
-        <div class="pop-layer">
+        <div class="pop-layer" name="Lists">
             <label for="CreateListBox">Name :</label>
             <input type="text" id="CreateListBox" />
-            <button class="Btn" id="OkBtn">Add</button>
-            <button class="Btn" id="DelBtn">DEL</button>
+            <button class="AddBtn">Add</button>
+            <button class="CancelBtn">Cancel</button>
         </div>
     </div>
     <div>
@@ -29,13 +29,19 @@
 </div>
 <div>
     <div class="panel-heading">
-        <h2 class="panel-title">Videos</h2>
+        <h2 style="width:130px;float:left;"  class="panel-title">Videos</h2>
+        <button id="AddList">+</button>
+        <button id="DelList">-</button>
     </div>
-    <div>
-        <label for="youtubeURL">URL :</label>
-        <input type="text" id="youtubeURL" />
-        <input type="button" value="INPUT" onclick="addVideo();" />
+    <div class="InfoLayout">
+        <div class="pop-layer" name="Videos">
+            <label for="youtubeURL">URL :</label>
+            <input type="text" id="youtubeURL" />
+            <button class="AddBtn">Add</button>
+            <button class="CancelBtn">Cancel</button>
+        </div>
     </div>
+    
     <div class="panel-body">
         <ul style="width:520px;"class="list-unstyled" id="videos"></ul>
     </div>

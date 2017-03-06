@@ -27,72 +27,7 @@
         });
     }
 
-    function addVideo() {
-        var regex = "^https://www.youtube.com/watch?v";
-        var url = $('#youtubeURL').val();
-        if (url.length <= 0) {
-            alertMessage("Input the YOUTUBE URL.");
-        } else {
-            if (url.match(regex) == null) {
-                alertMessage("PLEASE CHECK your YOUTUBE URI.");
-            }
-            else if (listcheck == null) {
-                alertMessage("BEFORE INPUT url, PLEASE SELECT the listBox.");
-            } else {
-                var vData = {
-                    Uri: $('#youtubeURL').val(),
-                    ListId: listcheck
-                };
-                $('#youtubeURL').val("");
-
-                ajaxHelper(videoUri, 'POST', vData).done(function (val) {
-                    var lastvId = $('#videos').children().last().attr('name');
-                    
-                    $("#videos").append("<li class=\"video\" id='video' name=" + val.vId + ">" +
-                        "<div  class='div-layout' width:800px' name='t'>" +
-                            "<div style='float:left;' name='t'><img src=" + val.vthumb + " height='94' width='168'></div>" +
-                            "<div style='float:left;'><p>" + val.vTitle + "</p>" +
-                                "<p id='vNum'> 재생횟수 : " + val.vNum + "</p>" +
-                                "<input type='button' class='numButton' value='+'/>" +
-                                "<input type='button' class='numButton' value='-'/>" +
-                                "<input type='button' class='delButton' value='Del' name='" + val.Id + "'/>" +
-                                "<input type='button' class='playButton' value='Play'" +
-                                "<meta property=\"og:url\" content=" + val.vLink +
-                                "><meta name='index' content=" + vIndex +
-                                "><meta property=\"vNum\" content=" + val.vNum +
-                                "><meta content=" + val.vId + ">" +
-                            "</div></div></li>");
-
-                    o_playVideoListIds.push(val.vId);
-                    o_videoNums.push(val.vNum);
-
-                    var Index = jQuery.inArray(lastvId, playVideoListIds);
-
-                    playVideoListIds.splice(Index+1, 0, val.vId);
-
-                    videoNums.splice(Index+1, 0, 1);
-                    videoIndexes.push(vTotal);
-                    vTotal++;
-                    vIndex++;
-                });
-            }
-        }
-    }
-    function addListBox() {
-        var name = $("#CreateListBox").val();
-        //need to check the duplicate
-        if (name.length > 0) {
-            var data = {
-                Name: name
-            };
-            ajaxHelper(listsUri, 'POST', data).done(function (val) {
-                $("#listBox").append("<li><div class=\"box\"id='list_box' name=\"" + val.Id + "\">" + val.Name + "</div></li>");
-
-            });
-        } else {
-            alertMessage("Input the LISTBOX NAME you want.");
-        }
-    }
+  
     function getAllLists() {
          $.getJSON(listsUri, function (data) {
              $.each(data, function (key, val) {
@@ -213,7 +148,7 @@
         player.playVideo();
     });
 
-//DELETE
+//DELETE in VideoList
     $(document).delegate('.delButton', 'click', function () {
         var v = $(this).parent().children();
         var id = $(this).attr('name');
@@ -271,38 +206,105 @@
             }
         }
     }
+//Alert POP-UP under the Video
     function alertMessage(text) {
         $('#text').text("Danger!\t" + text);
         $('#alert').show().delay(2000).fadeOut();
-
     }
-    function closebtn() {
-        $(this).css('display','none');
-    }
-    $('#AddList').click(function () {
+    $(document).delegate('.AddList', 'click', function () {
         var $el = $(this).parent().next();
-        //var isAdd = $(this).parent().next().hasClass('form-group');
-        //isAdd? $('form-group').fadeIn() : 
-        $('.Lists').fadeIn();
-        var $elW = ~~($el.outerWidth()),
-            $elH = ~~($el.outerHeight()),
-            docWidth = $(document).width(),
-            docHeight = $(document).height();
+        var check = $el.attr('name');
+        $el.fadeIn();
+        var position = $(this).position();
+        var Hsize = $(this).outerHeight();
+        var Wsize = $(this).outerWidth();
 
-        if ($elH < docHeight || $elW < docWidth) {
-            $el.css({
-                marginTop: -$elH / 2,
-                marginLeft: -$elW / 2
-            })
-        } else {
-            $el.css({ top: 0, left: 0 });
-        }
-        $el.find('#OKBtn').click(function () {
-            $('.Lists').fadeOut();
+        $el.css({
+            top: position.top + Hsize,
+            left:position.left + Wsize
+        })
+        $el.find('AddBtn').click(function () {
+            if (check == '') {
+                addListBox();
+            } else if (check == '') {
+                addVideo();
+            }
+            $el.fadeOut();
+            return false;
+        });
+        $el.find('CancelBtn').click(function () {
+            $el.fadeOut();
             return false;
         });
     });
+//Add List to DB and Web
+    function addListBox() {
+        var name = $("#CreateListBox").val();
 
+        if (name.length > 0) {
+            var data = {
+                Name: name
+            };
+            ajaxHelper(listsUri, 'POST', data).done(function (val) {
+                $("#listBox").append("<li><div class=\"box\"id='list_box' name=\"" + val.Id + "\">" + val.Name + "</div></li>");
+
+            });
+        } else {
+            alertMessage("Input the LISTBOX NAME you want.");
+        }
+    }
+//Add Video to DB and Web
+    function addVideo() {
+        var regex = "^https://www.youtube.com/watch?v";
+        var url = $('#youtubeURL').val();
+        if (url.length <= 0) {
+            alertMessage("Input the YOUTUBE URL.");
+        } else {
+            if (url.match(regex) == null) {
+                alertMessage("PLEASE CHECK your YOUTUBE URI.");
+            }
+            else if (listcheck == null) {
+                alertMessage("BEFORE INPUT url, PLEASE SELECT the listBox.");
+            } else {
+                var vData = {
+                    Uri: $('#youtubeURL').val(),
+                    ListId: listcheck
+                };
+                $('#youtubeURL').val("");
+
+                ajaxHelper(videoUri, 'POST', vData).done(function (val) {
+                    var lastvId = $('#videos').children().last().attr('name');
+
+                    $("#videos").append("<li class=\"video\" id='video' name=" + val.vId + ">" +
+                        "<div  class='div-layout' width:800px' name='t'>" +
+                            "<div style='float:left;' name='t'><img src=" + val.vthumb + " height='94' width='168'></div>" +
+                            "<div style='float:left;'><p>" + val.vTitle + "</p>" +
+                                "<p id='vNum'> 재생횟수 : " + val.vNum + "</p>" +
+                                "<input type='button' class='numButton' value='+'/>" +
+                                "<input type='button' class='numButton' value='-'/>" +
+                                "<input type='button' class='delButton' value='Del' name='" + val.Id + "'/>" +
+                                "<input type='button' class='playButton' value='Play'" +
+                                "<meta property=\"og:url\" content=" + val.vLink +
+                                "><meta name='index' content=" + vIndex +
+                                "><meta property=\"vNum\" content=" + val.vNum +
+                                "><meta content=" + val.vId + ">" +
+                            "</div></div></li>");
+
+                    o_playVideoListIds.push(val.vId);
+                    o_videoNums.push(val.vNum);
+
+                    var Index = jQuery.inArray(lastvId, playVideoListIds);
+
+                    playVideoListIds.splice(Index + 1, 0, val.vId);
+
+                    videoNums.splice(Index + 1, 0, 1);
+                    videoIndexes.push(vTotal);
+                    vTotal++;
+                    vIndex++;
+                });
+            }
+        }
+    }
 
     $(document).ready(function(){
 
