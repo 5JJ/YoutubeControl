@@ -11,8 +11,8 @@ p{
 }
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 #wrapper{
     overflow:hidden;
@@ -69,8 +69,8 @@ textarea {
     max-width: 280px;
 }
 .alert {
-    width:900px;
-    padding: 20px;
+    width:400px;
+    padding: 5px;
     background-color: #f44336;
     color: white;
 }
@@ -89,13 +89,23 @@ textarea {
 }
 .InfoLayout{
     display:none;
-	position:absolute;
 	background:#EAEAEA;
-	width:200px;
+	width:500px;
 	height:80px;
 	padding:10px;
     border: solid 1px black;
+    position:absolute;
 }
 .InfoLayout .pop-layer{
     display:block;
+}
+#vPlay{
+}
+.Stars{
+    width:300px;
+    float:left;
+    background-color:orangered;
+}
+.AddBtn{
+      display: inline-block;
 }

@@ -175,7 +175,7 @@
     function onYouTubePlayerAPIReady() {
         player = new YT.Player('vPlay', {
             height: '480',
-            width: '854',
+            width: '778',
             videoId: playVideoListIds[0],
             events: {
                 'onReady' : onReady,
@@ -209,69 +209,78 @@
 //Alert POP-UP under the Video
     function alertMessage(text) {
         $('#text').text("Danger!\t" + text);
-        $('#alert').show().delay(2000).fadeOut();
+        $('.alert').show().delay(2000).fadeOut();
     }
-    $(document).delegate('.AddList', 'click', function () {
-        var $el = $(this).parent().next();
+    function Pop_alertMessage(text, point) {
+        point.text("Danger!\t" + text);
+        point.show().delay(1500).fadeOut();
+    }
+
+    $('.AddList').click(function () {
+        var $el;
+        if ($('.InfoLayout').is(':visible')) {
+            $('.InfoLayout').fadeOut();
+        }
+        $el = $(this).parent().next();
         var check = $el.attr('name');
-        $el.fadeIn();
+
         var position = $(this).position();
         var Hsize = $(this).outerHeight();
         var Wsize = $(this).outerWidth();
+
+        $el.fadeIn();
 
         $el.css({
             top: position.top + Hsize,
             left:position.left + Wsize
         })
-        $el.find('AddBtn').click(function () {
-            if (check == '') {
-                addListBox();
-            } else if (check == '') {
-                addVideo();
+        $el.find('a.AddBtn').unbind('click').bind('click', function () {
+            if (check == 'Lists') {
+                addListBox($el);
+            } else if(check =='Videos'){
+                addVideo($el);
             }
-            $el.fadeOut();
             return false;
         });
-        $el.find('CancelBtn').click(function () {
-            $el.fadeOut();
+        $el.find('a.CloseBtn').unbind('click').bind('click', function () {
+            $el.fadeOut('fast');
             return false;
         });
     });
-//Add List to DB and Web
-    function addListBox() {
-        var name = $("#CreateListBox").val();
 
+//Add List to DB and Web
+    function addListBox($el) {
+        var name = $("#CreateListBox").val();
+        $("#CreateListBox").val("");
         if (name.length > 0) {
             var data = {
                 Name: name
             };
             ajaxHelper(listsUri, 'POST', data).done(function (val) {
                 $("#listBox").append("<li><div class=\"box\"id='list_box' name=\"" + val.Id + "\">" + val.Name + "</div></li>");
-
+                $el.fadeOut();
             });
         } else {
-            alertMessage("Input the LISTBOX NAME you want.");
+            Pop_alertMessage("Input the LISTBOX NAME you want.", $el.children().eq(1));
         }
     }
 //Add Video to DB and Web
-    function addVideo() {
-        var regex = "^https://www.youtube.com/watch?v";
+    function addVideo($el) {
+        var regex = '^https:\/\/www.youtube.com\/watch?';
         var url = $('#youtubeURL').val();
         if (url.length <= 0) {
-            alertMessage("Input the YOUTUBE URL.");
+            Pop_alertMessage("Input the YOUTUBE URL.", $el.children().eq(1));
         } else {
             if (url.match(regex) == null) {
-                alertMessage("PLEASE CHECK your YOUTUBE URI.");
+                Pop_alertMessage("PLEASE CHECK your YOUTUBE URI.", $el.children().eq(1));
             }
             else if (listcheck == null) {
-                alertMessage("BEFORE INPUT url, PLEASE SELECT the listBox.");
+                Pop_alertMessage("BEFORE INPUT url, PLEASE SELECT the listBox.", $el.children().eq(1));
             } else {
                 var vData = {
-                    Uri: $('#youtubeURL').val(),
+                    Uri: url,
                     ListId: listcheck
                 };
-                $('#youtubeURL').val("");
-
                 ajaxHelper(videoUri, 'POST', vData).done(function (val) {
                     var lastvId = $('#videos').children().last().attr('name');
 
@@ -301,9 +310,11 @@
                     videoIndexes.push(vTotal);
                     vTotal++;
                     vIndex++;
+                    $el.fadeOut('fast');
                 });
             }
         }
+        $('#youtubeURL').val("");
     }
 
     $(document).ready(function(){

@@ -3,46 +3,62 @@
 }
 @Styles.Render("~/Content/Site.css")
 <h2>Video</h2>
-<div id="vPlay">
-</div>
-<div id="alert" class="alert" style="display:none;">
-    <p id="text"> </p>
-</div>
 
-<div style="float:left;margin-right:100px;">
-    <div class ="panel-heading">
-        <h2 style="width:130px;float:left;" class="panel-title">Lists</h2>
-        <button id="AddList">+</button>
-        <button id="DelList">-</button>
+<div style="float:left; width:850px;">
+    <div class="alert" style="display:none;">
+        <p id="text"> </p>
     </div>
-    <div class="InfoLayout">
-        <div class="pop-layer" name="Lists">
-            <label for="CreateListBox">Name :</label>
-            <input type="text" id="CreateListBox" />
-            <button class="AddBtn">Add</button>
-            <button class="CancelBtn">Cancel</button>
+    <div id="vPlay">
+    </div>
+    <div style="float:left;margin-right:50px;">
+        <div class="panel-heading">
+            <h2 style="width:130px;float:left;" class="panel-title">Lists</h2>
+            <button class="AddList">+</button>
+            <button class="DelList">-</button>
+        </div>
+        <div class="InfoLayout" name="Lists">
+            <div class="pop-layer">
+                <label for="CreateListBox">Name :</label>
+                <input type="text" id="CreateListBox" />
+                <div class="btn-r">
+                    <a href="#" class="AddBtn">Add</a>
+                    <a href="#" class="CloseBtn">Close</a>
+                </div>
+                @*<button class="AddBtn">Add</button>*@
+                @*<button class="CancelBtn">Cancel</button>*@
+            </div>
+            <div class="alert" style="display:none;">
+            </div>
+        </div>
+        <div>
+            <ul class="list-unstyled" id="listBox"></ul>
         </div>
     </div>
-    <div>
-        <ul class="list-unstyled" id="listBox"></ul>
+    <div style="float:left;">
+        <div class="panel-heading">
+            <h2 style="width:130px;float:left;" class="panel-title">Videos</h2>
+            <button class="AddList">+</button>
+        </div>
+        <div class="InfoLayout" name="Videos">
+            <div class="pop-layer">
+                <label for="youtubeURL">URL :</label>
+                <input type="text" id="youtubeURL" />
+                <div class="btn-r">
+                    <a href="#" class="AddBtn">Add</a>
+                    <a href="#" class="CloseBtn">Close</a>
+                </div>
+            </div>
+            <div class="alert" style="display:none;">
+            </div>
+        </div>
+
+        <div class="panel-body">
+            <ul style="width:520px;" class="list-unstyled" id="videos"></ul>
+        </div>
     </div>
 </div>
-<div>
-    <div class="panel-heading">
-        <h2 style="width:130px;float:left;"  class="panel-title">Videos</h2>
-        <button id="AddList">+</button>
-        <button id="DelList">-</button>
-    </div>
-    <div class="InfoLayout">
-        <div class="pop-layer" name="Videos">
-            <label for="youtubeURL">URL :</label>
-            <input type="text" id="youtubeURL" />
-            <button class="AddBtn">Add</button>
-            <button class="CancelBtn">Cancel</button>
-        </div>
-    </div>
-    
-    <div class="panel-body">
-        <ul style="width:520px;"class="list-unstyled" id="videos"></ul>
-    </div>
+<div class="Stars">
+    <ul>
+        <li>hi</li>
+    </ul>
 </div>
