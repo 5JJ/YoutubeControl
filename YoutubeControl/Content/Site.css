@@ -87,3 +87,9 @@ textarea {
 .closebtn:hover {
     color: black;
 }
+.InfoLayout{
+    display:none;
+}
+.InfoLayout .pop-layer{
+    display:block;
+}

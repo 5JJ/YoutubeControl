@@ -279,11 +279,34 @@
     function closebtn() {
         $(this).css('display','none');
     }
+    $('#AddList').click(function () {
+        var $el = $(this).parent().next();
+        //var isAdd = $(this).parent().next().hasClass('form-group');
+        //isAdd? $('form-group').fadeIn() : 
+        $('.Lists').fadeIn();
+        var $elW = ~~($el.outerWidth()),
+            $elH = ~~($el.outerHeight()),
+            docWidth = $(document).width(),
+            docHeight = $(document).height();
+
+        if ($elH < docHeight || $elW < docWidth) {
+            $el.css({
+                marginTop: -$elH / 2,
+                marginLeft: -$elW / 2
+            })
+        } else {
+            $el.css({ top: 0, left: 0 });
+        }
+        $el.find('#OKBtn').click(function () {
+            $('.Lists').fadeOut();
+            return false;
+        });
+    });
+
 
     $(document).ready(function(){
 
         getAllLists();
       
     });
-
-       
+   
