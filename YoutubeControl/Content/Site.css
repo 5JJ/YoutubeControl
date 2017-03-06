@@ -87,3 +87,15 @@ textarea {
 .closebtn:hover {
     color: black;
 }
+.InfoLayout{
+    display:none;
+	position:absolute;
+	background:#EAEAEA;
+	width:200px;
+	height:80px;
+	padding:10px;
+    border: solid 1px black;
+}
+.InfoLayout .pop-layer{
+    display:block;
+}

@@ -10,28 +10,38 @@
 </div>
 
 <div style="float:left;margin-right:100px;">
-    <div class="panel-heading">
-        <h2 class="panel-title">Lists</h2>
-        @*<button id="AddList">+</button>*@
+    <div class ="panel-heading">
+        <h2 style="width:130px;float:left;" class="panel-title">Lists</h2>
+        <button id="AddList">+</button>
+        <button id="DelList">-</button>
     </div>
-    <div class="form-group" data-bind="with: newListBox">
-        <label for="CreateListBox">Name :</label>
-        <input type="text" id="CreateListBox" />
-        <input type="button" value="Add" onclick="addListBox();" />
+    <div class="InfoLayout">
+        <div class="pop-layer" name="Lists">
+            <label for="CreateListBox">Name :</label>
+            <input type="text" id="CreateListBox" />
+            <button class="AddBtn">Add</button>
+            <button class="CancelBtn">Cancel</button>
+        </div>
     </div>
     <div>
         <ul class="list-unstyled" id="listBox"></ul>
     </div>
 </div>
-<div style="float:left;">
+<div>
     <div class="panel-heading">
-        <h2 class="panel-title">Videos</h2>
+        <h2 style="width:130px;float:left;"  class="panel-title">Videos</h2>
+        <button id="AddList">+</button>
+        <button id="DelList">-</button>
     </div>
-    <div>
-        <label for="youtubeURL">URL :</label>
-        <input type="text" id="youtubeURL" />
-        <input type="button" value="INPUT" onclick="addVideo();" />
+    <div class="InfoLayout">
+        <div class="pop-layer" name="Videos">
+            <label for="youtubeURL">URL :</label>
+            <input type="text" id="youtubeURL" />
+            <button class="AddBtn">Add</button>
+            <button class="CancelBtn">Cancel</button>
+        </div>
     </div>
+    
     <div class="panel-body">
         <ul style="width:520px;"class="list-unstyled" id="videos"></ul>
     </div>
